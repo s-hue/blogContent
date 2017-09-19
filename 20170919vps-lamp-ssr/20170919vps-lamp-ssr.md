@@ -37,10 +37,40 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 ![VPS容量设置](https://jymlgw.bn1304.livefilestore.com/y4mwi1wwhGDyicxWVDV438MwzapJwwmh4ShSg-OT3uCDnfAnG2M3jz76L_iK9vgdCWslD8scNHlfeaBb7ou_9b4AAKkIij4KGs-wJGvK68pP8dvc3yfXm9goZIhqIc7LETkvFEcH0NLR4iGsvHeUr34q87fbzVspFgYyJa5Z6oAPLaqd0gvMMjpaI4LJ4vLPzhY6NPlqGq_1UhQG7gP5cbR5A?width=905&height=451&cropmode=none)
 
-6. 设置附加项，这对我这样的初级玩家，不需要，略过。
+6. 设置附加项，对我这样的初级玩家，不需要，略过。
 
 ![VPS附加项设置](https://jylvmg.bn1304.livefilestore.com/y4mwB4dphBp2_SwgqobHezxc2HHI2NYBpz1GO7FyJmoI-QKWUtlyNCzsBCns4FoC7ppg4eaLr_nYUrOTx51-CrByY4zVWAGoJ_ZZQ2YdurOVfu7Pzoo8gOclFkAKmXOJOBrAOdsltd59peVcfAO4zIArD2YLpjKmrZJ8yEt40sI3UTC1pU2o4Qa_6y_1ejjBEOP0bGru6-PPtLoMfa7KC_Nnw?width=571&height=524&cropmode=none)
 
 7. 主机标签，按个人喜好，如果不是准备开很多个VPS，完全不用设置。
 
 ![VPS主机标签](https://jlrwxw.bn1304.livefilestore.com/y4mhG4aLlfFAFdvDboHlbacZOpTos2lNHWY9L3UpGsFaIXS9UPmxysb4BeyHhMRh3NAnMx20Av5_KCkFqslA-Y-EAAuELnCgBY9vtdUGIPfgp8xgNh_lFdPbLOl5ydQGyo9w1UCQxY6kQX4xwwEm_DlWjpnKebKNUmXiu2jk3vk0rHZu9xnruDI-QCFEIRtf7gz8vqKoipPb-Ax3H1wZtbApw?width=1171&height=397&cropmode=none)
+
+8. 点击最后的Deploy Now，等待几分钟，当出现“Server added successfully”的时候，就说明你的VPS已经成功开通。
+
+9. 最后一步，点击主机名，进入管理界面，可以查看主机的***IP地址和密码***。（请记住这两个参数，后续设置会用到）
+
+### 在VPS服务器上部署ShadowsocksR
+
+因为这个VPS你看不见，摸不着，你需要一个工具来远程连接它，然后对它进行一些设置。常用的工具有[Xshell 5](https://www.netsarang.com/products/xsh_overview.html), [Putty](http://www.putty.org/)等，Xshell 5 针对个人和学生用户有免费的许可证，注册申请就可以了，推荐。
+
+使用Xshell连接VPS的方法过程，请参考[自建ss服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)的第二部分"部署VPS服务器"。
+
+登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为：
+
+    passwd
+
+回车后就可以设置新的root密码，需要回车后再输入一次。修改好后会有成功的提示信息。（**注意：**如果设置新的密码，请去Xshell会话属性中的密码修改为新的密码）
+
+部署SSR的代码：
+
+    wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+    chmod +x shadowsocksR.sh
+    ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+
+回车，等待安装完成。
+
+完成后就会开始提示开始设置ShadowsocksR的密码和服务器端口，随后会提示你选择加密方式（推荐aes-256-cfb）、协议（推荐auth_aes128_md5）和混淆方式（推荐tls1.2_ticket_auth），都是以数字选择的方式输入回车确认即可。（*如果有输错的时候，请使用ctrl+Backspace组合键进行删除，而不是单一的Backspace键*）
+
+设置完成后，按任意键开始安装ShadowsocksR, 完成后会给出你的配置信息，**请一定记好这些信息，推荐截图保存，客户端设置时需要使用到**。之后可以使用客户端连接测试是否可以连接。
+
+基本的Shadowsocks部署就已经完成，如果还希望优化速度，可以搜索BBR优化或者锐速等优化方法。
