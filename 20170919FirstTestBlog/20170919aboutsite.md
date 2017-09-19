@@ -6,4 +6,4 @@
 ## 本站内容范围
 这是关于个人工作学习的内容记录站点，开启新的征程。
 
-![](https://drive.google.com/file/d/0B-ZDE-tm8SQUVXVtSWc0SzMySEE/view?usp=sharing)
+![](https://www.aspcapetinsurance.com/media/1034/31.jpg)
