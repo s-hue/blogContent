@@ -56,17 +56,17 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 使用Xshell连接VPS的方法过程，请参考[自建ss服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)的第二部分"部署VPS服务器"。
 
 登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为（本篇Blog中的每行代码前都有“\# ”，目的是为了防止代码长度比较长时，Blog可能自动开始新行，故同时出现多行代码时，以每个“\# ”表示为一行完整的代码，复制代码时请不要复制“\# ”）：
-
+```
     # passwd
-
+```
 回车后就可以设置新的root密码，需要回车后再输入一次。修改好后会有成功的提示信息。（**注意：**如果设置新的密码，请去Xshell会话属性中的密码修改为新的密码）
 
 部署SSR的代码：
-
+```
     # wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
     # chmod +x shadowsocksR.sh
     # ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
-
+```
 回车，等待安装完成。
 
 完成后就会开始提示开始设置ShadowsocksR的密码和服务器端口，随后会提示你选择加密方式（推荐aes-256-cfb）、协议（推荐auth_aes128_md5）和混淆方式（推荐tls1.2_ticket_auth），都是以数字选择的方式输入回车确认即可。（*如果有输错的时候，请使用ctrl+Backspace组合键进行删除，而不是单一的Backspace键*）
@@ -94,13 +94,13 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务器），MySQL（数据库软件） 和PHP（有时也是指Perl或Python）的第一个字母，主要用来建立web应用平台（通俗的讲就是来搭建网站的）。
 
 新手嘛，LNMP一键安装包是个好东西，登陆VPS后，输入代码：
-
+```
     # screen -S lnmp
-
+```
 回车，创建screen会话。输入代码下载LNMP稳定版（末尾的lamp不能忘，不然就会默认安装为LNMP）：
-
+```
     # wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz && tar zxf lnmp1.4.tar.gz && cd lnmp1.4 && ./install.sh lamp
-
+```
 回车，进入搭建LAMP环境前的必要配置（没有特殊要求，一般选择默认项就可以）。
 
 1. 选择数据库（**需要注意的是MySQL 5.6,5.7及MariaDB 10必须在1G以上内存的更高配置上才能选择！**），输入对应MySQL或MariaDB版本前面的序号，回车进入下一步：
@@ -204,6 +204,7 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
     # chown -R www /home/wwwroot
 ```
 （*提示：以后每添加一个域名，都要执行一次以上两步操作。*）
+
 7. LNMP安装包默认禁用了scandir函数，会导致WordPress后台看不到安装的主题，以及当前主题总显示 “有新的翻译可用” 的提醒。所以，需要开启此函数。
 
 - 打开文件php.ini，回车确认：
@@ -222,4 +223,5 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 ```
     # lnmp restart
 ```
+
 8. 在你的域名正常解析后，在浏览器中输入网址打开博客进行最后的安装
