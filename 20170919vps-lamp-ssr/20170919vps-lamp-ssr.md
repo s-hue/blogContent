@@ -75,15 +75,13 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 基本的Shadowsocks部署就已经完成，如果还希望优化速度，可以搜索BBR优化或者锐速等优化方法。
 
-## 搭建LAMP站点环境
-
-### 域名注册
+## 域名注册
 
 对于新手来说，不需要去花过多的钱在这上面，推荐域名注册商[namesilo](https://www.namesilo.com/?rid=c6de758mj)，优势很明显：价格很便宜、重要的是支持支付宝付款；而且还有免费赠送whois保护，免费赠送域名停靠服务。
 
 注册流程我不此处重复了，可以去[王掌柜的网站](https://since1989.org/wordpress/namesilo-coupon-godaddy-domain-free.html)看整个流程，还可享受优惠码哦。
 
-### 域名解析
+## 域名解析
 
 有了自己的域名（网址），有了VPS的IP地址，怎么让这两个东西连接起来，可以输入自己的网址来访问自己的站点，这就需要域名解析来完成。所以我们还需要注册一家域名解析的公司让他们可以把我们的网址和IP连在一起，并且告诉全网络，这样所有人就可以通过网址访问我们之后建立起来的个人站点了。
 
@@ -91,7 +89,7 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 **域名解析是需要时间的，不能立刻就生效，所以请在部署自己站点之前把域名注册和域名解析完成好，不然会和我一样等几天没事做，不能配置WordPress。**
 
-### LAMP环境部署
+## LAMP环境部署
 
 LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务器），MySQL（数据库软件） 和PHP（有时也是指Perl或Python）的第一个字母，主要用来建立web应用平台（通俗的讲就是来搭建网站的）。
 
@@ -133,14 +131,14 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 
 ![Apache](https://wp2xsq.bn1304.livefilestore.com/y4mlMLs-vJZQuPCDQjdd0SwRPOLbFCJPiFsiBow2A2xt6lnGGcW9A171i5XmIT7WdwGaDjnJJQ1rGNSxx3eo1a4HpRsRtETzc8p8-0yIHMKyHVKM-8vvVdwZH4iZQdQLnDyW7EuWE89n9gBComewC5REoIq34DpssbWPJrdFaYh-mCvhGMU9mDeVnaW3lafBE1TYwtPM3Je_HxDBdsCNVAzZA?width=308&height=73&cropmode=none)
 
-8.提示"Press any key to install...or Press Ctrl+c to cancel"后，按回车键确认开始安装。LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。
+8.提示“Press any key to install...or Press Ctrl+c to cancel”后，按回车键确认开始安装。LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。
 
-安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。如果显示Nginx: OK，MySQL: OK，PHP: OK，并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功。
+安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。如果显示Nginx: OK，MySQL: OK，PHP: OK，并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及“Install lnmp V1.4 completed! enjoy it.”的话，说明已经安装成功。
 
 ![SuccessRunning](https://jyl9jq.bn1304.livefilestore.com/y4mSYlrI4asNQOcdIAxINafDiUzV_RlJcY2TVTup6SyxGwkh_yv8x03JaE1mQORJ0n4h1Vaiw-KaeESGhGkdkwWWZ5YQ2HY_QTeGWkczvZKFxynI9ElnQ3Icn_e4ifDYGK-W-1QzN4sT7k-nkK_ScsoKNJ3NCm7IA83VEk2bwPMz3yiKByIIIMZ_jdeCtOYets9X5m75W-PQJI8UGiAvtdhGg?width=534&height=644&cropmode=none)
 
 
-### 添加虚拟主机
+## 添加虚拟主机
 
 经过上面的操作，VPS上已经有了网站运行的基本环境LAMP，距离个人网站的成功又进了一步。现在要做的就是创建虚拟主机来给我们的网站当个容器。这个操作需要使用Xshell连接到VPS后，输入命令来完成，所以请仔细小心不要出错。（*万一出错了，请在按回车之前用Ctrl+Backspace组合键删除输入错误的部分*）
 
