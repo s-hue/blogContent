@@ -55,7 +55,7 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 使用Xshell连接VPS的方法过程，请参考[自建ss服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)的第二部分"部署VPS服务器"。
 
-登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为（本篇Blog中的每行代码前都有“# ”，目的是为了防止代码长度比较长时，Blog可能自动开始新行，故同时出现多行代码时，以每个“# ”表示为一行完整的代码，复制代码时请不要复制“# ”）：
+登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为（本篇Blog中的每行代码前都有“\# ”，目的是为了防止代码长度比较长时，Blog可能自动开始新行，故同时出现多行代码时，以每个“\# ”表示为一行完整的代码，复制代码时请不要复制“\# ”）：
 
     # passwd
 
@@ -138,6 +138,7 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。如果显示Nginx: OK，MySQL: OK，PHP: OK，并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功。
 
 ![SuccessRunning](https://jyl9jq.bn1304.livefilestore.com/y4mSYlrI4asNQOcdIAxINafDiUzV_RlJcY2TVTup6SyxGwkh_yv8x03JaE1mQORJ0n4h1Vaiw-KaeESGhGkdkwWWZ5YQ2HY_QTeGWkczvZKFxynI9ElnQ3Icn_e4ifDYGK-W-1QzN4sT7k-nkK_ScsoKNJ3NCm7IA83VEk2bwPMz3yiKByIIIMZ_jdeCtOYets9X5m75W-PQJI8UGiAvtdhGg?width=534&height=644&cropmode=none)
+
 
 ### 添加虚拟主机
 
