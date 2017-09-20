@@ -55,7 +55,7 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 使用Xshell连接VPS的方法过程，请参考[自建ss服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)的第二部分"部署VPS服务器"。
 
-登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为：
+登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为（本篇Blog中的每行代码前都有“# ”，目的是为了防止代码长度比较长时，Blog可能自动开始新行，故同时出现多行代码时，以每个“# ”表示为一行完整的代码，复制代码时请不要复制“# ”）：
 
     # passwd
 
@@ -75,7 +75,7 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 基本的Shadowsocks部署就已经完成，如果还希望优化速度，可以搜索BBR优化或者锐速等优化方法。
 
-## 搭建LAMP个人站点
+## 搭建LAMP站点环境
 
 ### 域名注册
 
@@ -139,3 +139,40 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 
 ![SuccessRunning](https://jyl9jq.bn1304.livefilestore.com/y4mSYlrI4asNQOcdIAxINafDiUzV_RlJcY2TVTup6SyxGwkh_yv8x03JaE1mQORJ0n4h1Vaiw-KaeESGhGkdkwWWZ5YQ2HY_QTeGWkczvZKFxynI9ElnQ3Icn_e4ifDYGK-W-1QzN4sT7k-nkK_ScsoKNJ3NCm7IA83VEk2bwPMz3yiKByIIIMZ_jdeCtOYets9X5m75W-PQJI8UGiAvtdhGg?width=534&height=644&cropmode=none)
 
+### 添加虚拟主机
+
+经过上面的操作，VPS上已经有了网站运行的基本环境LAMP，距离个人网站的成功又进了一步。现在要做的就是创建虚拟主机来给我们的网站当个容器。这个操作需要使用Xshell连接到VPS后，输入命令来完成，所以请仔细小心不要出错。（*万一出错了，请在按回车之前用Ctrl+Backspace组合键删除输入错误的部分*）
+
+1. 成功连接VPS后，输入命令开始操作：
+
+    # lnmp vhost add
+
+2. 输入要添加网站的域名（*就是你在域名注册商注册好的那个网址*），以本站为例，输入：
+
+    # www.workhub.life
+
+3. 询问是否添加更多域名，直接再输入要绑定的域名，这里我们将workhub.life 也绑上，多个域名空格隔开，如不需要绑其他域名就直接回车。(注：**带www和不带www的是不同的域名，如需带www和不带的www的域名都访问同一个网站需要同时都绑定**)。
+
+4. 设置网站的目录，不输入直接回车的话，采用默认目录：/home/wwwroot/域名
+
+5. 然后设置允许Rewrite，伪静态可以使URL更加简洁也利于SEO，我们之后要使用的是WordPress，所以我们输入:
+
+    # wordpress 
+
+6. 设置日志，如启用日志输入y，不启用输入n，回车。
+
+7. 询问是否用相同的名字添加数据库和数据库用户，输入y，回车。此时会先验证MySQL的root密码(注：输入密码将不显示，所以不要输入错误)，输入完成后回车。
+
+8. 输入要创建的数据库名称，要创建的数据库用户名会和数据库同名，回车确认。
+
+    # db_neworklife
+
+9. 设置该数据库用户的密码，回车确认。
+
+10. 如果安装了FTP服务器会询问是否添加FTP账号的相关信息
+
+11. 接下来是LNMP1.4新增的添加SSL功能，如果需要添加输入y，不添加输入n回车。
+
+12. 提示Press any key to start create virtul host...后，回车确认便会开始创建虚拟主机。添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息
+
+## 安装WordPress
