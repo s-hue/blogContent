@@ -144,7 +144,7 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 
 1. 成功连接VPS后，输入命令开始操作：
 
-    # lnmp vhost add
+        # lnmp vhost add
 
 2. 输入要添加网站的域名（*就是你在域名注册商注册好的那个网址*），以本站为例，输入：
 
