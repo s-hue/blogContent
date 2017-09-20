@@ -57,15 +57,15 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 
 登录VPS成功后，修改root密码，改为容易记、足够安全的新密码。代码为：
 
-    passwd
+    # passwd
 
 回车后就可以设置新的root密码，需要回车后再输入一次。修改好后会有成功的提示信息。（**注意：**如果设置新的密码，请去Xshell会话属性中的密码修改为新的密码）
 
 部署SSR的代码：
 
-    wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-    chmod +x shadowsocksR.sh
-    ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+    # wget --no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+    # chmod +x shadowsocksR.sh
+    # ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 回车，等待安装完成。
 
@@ -74,3 +74,68 @@ Vultr公司提供了日本和新加坡的机房已供选择，但是这两个地
 设置完成后，按任意键开始安装ShadowsocksR, 完成后会给出你的配置信息，**请一定记好这些信息，推荐截图保存，客户端设置时需要使用到**。之后可以使用客户端连接测试是否可以连接。
 
 基本的Shadowsocks部署就已经完成，如果还希望优化速度，可以搜索BBR优化或者锐速等优化方法。
+
+## 搭建LAMP个人站点
+
+### 域名注册
+
+对于新手来说，不需要去花过多的钱在这上面，推荐域名注册商[namesilo](https://www.namesilo.com/?rid=c6de758mj)，优势很明显：价格很便宜、重要的是支持支付宝付款；而且还有免费赠送whois保护，免费赠送域名停靠服务。
+
+注册流程我不此处重复了，可以去[王掌柜的网站](https://since1989.org/wordpress/namesilo-coupon-godaddy-domain-free.html)看整个流程，还可享受优惠码哦。
+
+### 域名解析
+
+有了自己的域名（网址），有了VPS的IP地址，怎么让这两个东西连接起来，可以输入自己的网址来访问自己的站点，这就需要域名解析来完成。所以我们还需要注册一家域名解析的公司让他们可以把我们的网址和IP连在一起，并且告诉全网络，这样所有人就可以通过网址访问我们之后建立起来的个人站点了。
+
+同样为了偷懒，还是去[王掌柜的网站](https://since1989.org/namesilo/dnspod-name-servers-domain.html)看整个流程和设置方法，超级容易。
+
+**域名解析是需要时间的，不能立刻就生效，所以请在部署自己站点之前把域名注册和域名解析完成好，不然会和我一样等几天没事做，不能配置WordPress。**
+
+### LAMP环境部署
+
+LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务器），MySQL（数据库软件） 和PHP（有时也是指Perl或Python）的第一个字母，主要用来建立web应用平台（通俗的讲就是来搭建网站的）。
+
+新手嘛，LNMP一键安装包是个好东西，登陆VPS后，输入代码：
+
+    # screen -S lnmp
+
+回车，创建screen会话。输入代码下载LNMP稳定版（末尾的lamp不能忘，不然就会默认安装为LNMP）：
+
+    # wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz && tar zxf lnmp1.4.tar.gz && cd lnmp1.4 && ./install.sh lamp
+
+回车，进入搭建LAMP环境前的必要配置（没有特殊要求，一般选择默认项就可以）。
+
+1. 选择数据库（**需要注意的是MySQL 5.6,5.7及MariaDB 10必须在1G以上内存的更高配置上才能选择！**），输入对应MySQL或MariaDB版本前面的序号，回车进入下一步：
+
+![Database](https://jymsyg.bn1304.livefilestore.com/y4m4kFFCJWb91CuURCCuIrLE1lcDZVzBn-EY7SlUiNx11vaj6b2i0OJLYYxPAUSmKiDr-i4I_0xzSizWYcof67IIV6_TXbsahPa_6QUuMwREIxrIPKp9hY1H0P_ZBoCraeUde-BUsp2inzIVmkWljXnNOzW3NmbCFxuRlnXfzoqadX0zKLUK5J32pNQegfpPeczriBO3TDH5_kafElX8n00wg?width=347&height=170&cropmode=none)
+
+2. 设置MySQL的root密码（不输入直接回车将会设置为root）如果输入有错误需要删除时，可以按住Ctrl+Backspace组合键进行删除(个别情况下是只需要Backspace键)。输入完成后回车进入下一步：
+
+![MySQLpassword](https://wp381a.bn1304.livefilestore.com/y4mRj9Eunbo6NfOcdn84mGlSb-DeHtvG8DQZMbIi5WwLA2weFwW98IiBO92a0_XSYpR2eD1NJWmciHfnof1pHM-EFBvKG-Omca6W3U3KhYWA9h8CZFajf5xzIZoxYXbdAsLLmtJYYfCnv1S_h6ZbDJXhvNKyQ1TFGeNsLrzuLgPXAmzFpbLND6pyOdZJPgnVHCQIZ21cJlj0ubQqJCpBxo1hw?width=426&height=39&cropmode=none)
+
+3. 选择是否启用MySQL InnoDB，InnoDB引擎默认为开启，一般建议开启，直接回车或输入 y ，回车进入下一步：
+
+![InnDBEngine](https://jylceq.bn1304.livefilestore.com/y4m1j6q05NcczEkwpCj_WpayS2iNCN__HmJgcSb6FofVwpsDNgdq678fU9wDG1EHs_Uhgn8Wlfe2xyjXtyvcwAalislXGd52ZHZmCGBbE6ija1cusODPwYu23PA5tLNmUeehOKZynwpcbntRkTXXSUMsmxD3AUDaYljQLV6CoGybBZM8Lz_H7YmdQLSMJ1Jc3Fl-zZsZvNXyt0Hg3Jg5kKJCQ?width=423&height=42&cropmode=none)
+
+4. 输入要选择的PHP版本的序号（*注意：选择PHP7等高版本时需要自行确认是否与自己的程序兼容。*），回车进入下一步：
+
+![PHP](https://jyn37q.bn1304.livefilestore.com/y4mnlIbes9nWb-ojTUSgmpAveEa9zx18PkBonkeADfvrJB3zqXNG4dqQcd-AeGyOtQjD6mpnfowxwe8IhQyefqZzap8Uomjt2StUi1GR4qayZuLLqge4JURG-qI9NB1SwPT_OSOumYdkn1Xl5IPGFQuIMZIwl1-LbPVCYDCMyBKV4oki0FL7VSGYiKJ2a7iiVuwQ13aFjEGUkqmUCaXeODeiA?width=324&height=152&cropmode=none)
+
+5. 选择是否安装内存优化，默认为不安装，回车进入下一步：
+
+![MemoryAllocator](https://wp0yvg.bn1304.livefilestore.com/y4mucyUGETW0RpNI29Fm21MBH8y9yg3k2Eu8JaAtRuUfWV3fa7viqgO8l-XeQSwZsu5ocBWJYzdS3SKap-ig5DZLOKMG-9eWvajCvntzGKPqP6SHlr-Ncp6-SlmAA3IXO8ttLIZXreteH0CHVTFuDZBAFNnOgfLwKS7nZL2qdQBhomn5U2Vg0ro5Ig11rWNEB9feajnSgEduBxdfzgwJJCwbA?width=384&height=84&cropmode=none)
+
+6. 提示设置管理员邮箱，该邮箱会在报错时显示在错误页面上：
+
+![AdminEmail](https://jykyag.bn1304.livefilestore.com/y4m23tOf5-NfbT4EOOTHgGiZcNFklTMVykCPxqwMgmTfhDK3CDySL4DxWWZetfKFNGVcqKBHDgOdbwiuLK9Dt56fowxkweH9wJYiDAMHwqNAADzPrKlSyskD-zKxmGSMI3h7jR23GCOrILN-ZykCE2Wchrro_B8YvcTUkCBoy4QPcNkGNepnyNnO9ASIqngQwifKtrfTmiznjOVN0cY8YJcPQ?width=293&height=40&cropmode=none)
+
+7. 选择Apache版本，输入对应版本前面的数字序号，回车。
+
+![Apache](https://wp2xsq.bn1304.livefilestore.com/y4mlMLs-vJZQuPCDQjdd0SwRPOLbFCJPiFsiBow2A2xt6lnGGcW9A171i5XmIT7WdwGaDjnJJQ1rGNSxx3eo1a4HpRsRtETzc8p8-0yIHMKyHVKM-8vvVdwZH4iZQdQLnDyW7EuWE89n9gBComewC5REoIq34DpssbWPJrdFaYh-mCvhGMU9mDeVnaW3lafBE1TYwtPM3Je_HxDBdsCNVAzZA?width=308&height=73&cropmode=none)
+
+8.提示"Press any key to install...or Press Ctrl+c to cancel"后，按回车键确认开始安装。LNMP脚本就会自动安装编译Nginx、MySQL、PHP、phpMyAdmin、Zend Optimizer这几个软件。
+
+安装时间可能会几十分钟到几个小时不等，主要是机器的配置网速等原因会造成影响。如果显示Nginx: OK，MySQL: OK，PHP: OK，并且Nginx、MySQL、PHP都是running，80和3306端口都存在，并提示安装使用的时间及Install lnmp V1.4 completed! enjoy it.的话，说明已经安装成功。
+
+![SuccessRunning](https://jyl9jq.bn1304.livefilestore.com/y4mSYlrI4asNQOcdIAxINafDiUzV_RlJcY2TVTup6SyxGwkh_yv8x03JaE1mQORJ0n4h1Vaiw-KaeESGhGkdkwWWZ5YQ2HY_QTeGWkczvZKFxynI9ElnQ3Icn_e4ifDYGK-W-1QzN4sT7k-nkK_ScsoKNJ3NCm7IA83VEk2bwPMz3yiKByIIIMZ_jdeCtOYets9X5m75W-PQJI8UGiAvtdhGg?width=534&height=644&cropmode=none)
+
