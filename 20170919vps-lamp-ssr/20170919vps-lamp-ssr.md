@@ -240,10 +240,10 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 
 ## 内容参考站点
 
-(Mr.王掌柜)[https://since1989.org/]
+[Mr.王掌柜](https://since1989.org/)
 
-(Seoimo: VPS建站: LAMP搭建WordPress博客+优化安装教程 (Vultr & 搬瓦工VPS实测哪个好用))[http://www.seoimo.com/]
+[Seoimo: VPS建站: LAMP搭建WordPress博客+优化安装教程 (Vultr & 搬瓦工VPS实测哪个好用)](http://www.seoimo.com/)
 
-(Jwcyber: VPS+LNMP+WordPress搭建个人网站/博客)[http://www.jwcyber.com/build-site/]
+[Jwcyber: VPS+LNMP+WordPress搭建个人网站/博客](http://www.jwcyber.com/build-site/)
 
-(LNMP.org)[https://lnmp.org/install.html]
+[LNMP.org](https://lnmp.org/install.html)
