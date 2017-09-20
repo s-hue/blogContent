@@ -176,3 +176,44 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 12. 提示Press any key to start create virtul host...后，回车确认便会开始创建虚拟主机。添加成功会提示添加的域名、目录、伪静态、日志、数据库、FTP等相关信息
 
 ## 安装WordPress
+
+此处介绍使用命令行的方式来安装WordPress中文版。
+
+1. 首先还是通过Xshell与VPS连接上，输入命令进入刚刚建立的域名目录，回车确认：
+
+    # cd /home/wwwroot/www.workhub.life
+
+2. 输入代码下载WordPress的程序压缩包，回车确认：
+
+    # wget https://cn.wordpress.org/wordpress-4.8.1-zh_CN.tar.gz
+
+3. 下载完之后，命令解压压缩包，回车确认：
+
+    # tar -zxvf wordpress-4.8.1-zh_CN.tar.gz
+
+4. 将解压出来的wordpress文件夹内全部文件移动到当前的域名目录下，回车确认（最后的小句点不要漏掉）：
+
+    # mv wordpress/* .
+
+5. 然后删掉空文件夹wordpress，回车确认：
+
+    # rm -rf wordpress
+
+6. 赋予根目录文件的可写权限，避免因权限的问题导致安装出错（比如wp-config.php无法创建、需要提供FTP用户密码以及主题和插件不能更新等），回车确认：
+
+    # chmod -R 755 /home/wwwroot
+    # chown -R www /home/wwwroot
+
+（*提示：以后每添加一个域名，都要执行一次以上两步操作。*）
+7. LNMP安装包默认禁用了scandir函数，会导致WordPress后台看不到安装的主题，以及当前主题总显示 “有新的翻译可用” 的提醒。所以，需要开启此函数。
+
+7.1 打开文件php.ini，回车确认：
+    # vi /usr/local/php/etc/php.ini
+7.2 查找scandir函数，回车确认：
+    # ?scandir
+7.3 按delete键删除，接下来需要保存并退出vi命令，回车确认：
+    # :wq
+7.4 重启一下LNMP，回车确认：
+    # lnmp restart
+
+8. 在你的域名正常解析后，在浏览器中输入网址打开博客进行最后的安装
