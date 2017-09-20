@@ -167,7 +167,9 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
     # db_neworklife
 ```
 9. 设置该数据库用户的密码，回车确认。
-
+```
+    # password
+```
 10. 如果安装了FTP服务器会询问是否添加FTP账号的相关信息
 
 11. 接下来是LNMP1.4新增的添加SSL功能，如果需要添加输入y，不添加输入n回车。
@@ -224,4 +226,24 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
     # lnmp restart
 ```
 
-8. 在你的域名正常解析后，在浏览器中输入网址打开博客进行最后的安装
+8. 在你的域名正常解析后，在浏览器中输入网址打开博客进行最后的安装。
+
+![wordpress-begin](https://wp3nmg.bn1304.livefilestore.com/y4mM7CJSIlhlhRB8ARIlczko01XyljBhUsCqDLmy6R0l0kycFqWhXUF6Z3H5TApNdSV7_0bgy6p1io3nz9oKnoNGcvxX4x9tUcKNRkRsZ-GpwyHU-rOTyyP_1YpzfModYAeLOh3GOQRipUpEFMID2H9SQTUyP48ahQkJh6gveLvrzm7Bzuohrzte1ZoMwhefW70SGHytfKyitCTAH6sqHfGfA?width=760&height=540&cropmode=none)
+
+9. 数据库名和数据库用户名就是在上一节设置的“db_neworklife”，密码为“password”，数据库主机各表前缀一般不用修改。
+
+10. 提交后点击进行安装，会输入一些站点的基本信息，不用担心此处会填错，后面可以在WordPress后台进行修改。
+
+## 后记
+
+这算是我个人站点真正意义上的第一篇文章，记录下这个站搭建的过程，供后面的同学进行学习，算是一篇基本的教程内容。个人站点肯定还有很多需要完善的内容，比如：安全防护、原创内容、界面友好、内容管理等等。希望这篇文章可以给你一些帮助，也希望自己可以不断的更新自己的Blog内容。
+
+## 内容参考站点
+
+(Mr.王掌柜)[https://since1989.org/]
+
+(Seoimo: VPS建站: LAMP搭建WordPress博客+优化安装教程 (Vultr & 搬瓦工VPS实测哪个好用))[http://www.seoimo.com/]
+
+(Jwcyber: VPS+LNMP+WordPress搭建个人网站/博客)[http://www.jwcyber.com/build-site/]
+
+(LNMP.org)[https://lnmp.org/install.html]
