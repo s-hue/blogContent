@@ -208,12 +208,19 @@ LAMP指的是个什么呢？它是Linux（操作系统）、Apache（HTTP服务�
 7. LNMP安装包默认禁用了scandir函数，会导致WordPress后台看不到安装的主题，以及当前主题总显示 “有新的翻译可用” 的提醒。所以，需要开启此函数。
 
 - 打开文件php.ini，回车确认：
+
     # vi /usr/local/php/etc/php.ini
+
 - 查找scandir函数，回车确认：
+
     # ?scandir
+
 - 按delete键删除，接下来需要保存并退出vi命令，回车确认：
+
     # :wq
+
 - 重启一下LNMP，回车确认：
+
     # lnmp restart
 
 8. 在你的域名正常解析后，在浏览器中输入网址打开博客进行最后的安装
