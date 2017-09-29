@@ -130,6 +130,7 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
     ```python
         some phthon codes.
     ```
+    python表示使用python的语法高亮模式
 ```
 
 ## 列表（List）
