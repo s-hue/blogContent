@@ -173,6 +173,8 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 
 ## 数学公式
 
+[mathjax]
+
 Markdown本身是不支持数学公式的，不过可以使用[MathJax](https://www.mathjax.org/)来实现嵌入公式。
 如果在行内加入公式，使用`$latex ...$`格式，如果要让公式单独显示一行，则使用格式：`$$...$$`。
 
@@ -182,4 +184,4 @@ Markdown本身是不支持数学公式的，不过可以使用[MathJax](https://
     $latex \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
 ```
 
-会显示为：$latex \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
+会显示为：$$ \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
