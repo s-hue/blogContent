@@ -6,7 +6,7 @@
 
 Markdown沿用HTML Comment的注释格式：
 
-```
+```markdown
     <!-- This is a comment! -->
 ```
 
@@ -14,7 +14,7 @@ Markdown沿用HTML Comment的注释格式：
 
 Markdown支持两种标题的语法，我采用的是类atx形式，即使用1到6个`#`来标注6级标题，对应HTML中的`<h1>`-`<h6>`标签。
 
-```
+```markdown
     # 第一级标题 (H1，常为文档标题)
     ## 第二级标题 (H2)
     ### 第三级标题 (H3)
@@ -41,7 +41,7 @@ Markdown中的普通段落一般顶格开始，没有缩进。如果要缩进，
 
 使用三个以上的星号（\*）或减号（\-）或底线（\_）来建立水平分隔线，对应HTML中的`<hr>`标签。注意行内不能有其他内容，且使用减号时最好在用空格分隔并在上一行空一行。
 
-```
+```markdown
     ---
     ***
     ___
@@ -53,7 +53,7 @@ Markdown中的普通段落一般顶格开始，没有缩进。如果要缩进，
 
 使用一个星号（\*）或下划线（\_）包围文字来实现，对应HTML中的`<i>`/`<em>`标签。
 
-```
+```markdown
     *Italic* and _emphasize_
 ```
 
@@ -63,7 +63,7 @@ Markdown中的普通段落一般顶格开始，没有缩进。如果要缩进，
 
 使用两个星号（\*）或下划线（\_）包围文字来实现，对应HTML中的`<b>`/`<strong>`标签。
 
-```
+```markdown
     **This** is very __important__.
 ```
 
@@ -93,7 +93,7 @@ Markdown 支持两种形式的超文本链接语法格式：行内式（Inline�
 
 refid可以与text一致，从而进一步精简参考链接的书写格式：
 
-```
+```markdown
     This is a [text][] example.
     [text]:URL
     或者
@@ -104,7 +104,7 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 `[refid]:URL` 的URL后面可以选择性地用单引号、双引号或是括弧闭包起来标记title。
 下面这三种链接的定义都是相同的：
 
-```
+```markdown
     [foo]: http://example.com/ "Optional Title Here"
     [foo]: http://example.com/ 'Optional Title Here'
     [foo]: http://example.com/ (Optional Title Here)
@@ -138,7 +138,7 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 
 在行首使用一个星号（\*）、加号（\+）或减号（\-）加一个空格来作为无序列表的标记。如果需要嵌套效果，则在标记前增加不同长度的tab来实现。
 
-```
+```markdown
     * Apple
     * Orange
     + Pear
@@ -151,7 +151,7 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 
 有序列表项目的行首则使用数字加一个英文句点标记。
 
-```
+```markdown
     1. Start
     2. Going
     3. End
@@ -161,11 +161,11 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 
 表格使用`|`来分隔不同的单元格，用`-`来分隔表头和其它行。示例如下：
 
-```
-| Left | Center | Right | 
-| :--- | :----: | ----：|
-| LLLL | CCCCCC | RRRRR |
-| LL   | CC     | RR    |
+```markdown
+    | Left | Center | Right | 
+    | :--- | :----: | ----：|
+    | LLLL | CCCCCC | RRRRR |
+    | LL   | CC     | RR    |
 ```
 
 效果为：
@@ -179,7 +179,13 @@ refid可以与text一致，从而进一步精简参考链接的书写格式：
 
 ## 数学公式
 
-如果在行内加入公式，使用`$...$`格式，如果要让公式单独显示一行，则使用格式：`$$...$$`。
+Markdown本身是不支持数学公式的，不过可以使用[MathJax](www.mathjax.org/)来实现嵌入公式。
+如果在行内加入公式，使用`$latex ...$`格式，如果要让公式单独显示一行，则使用格式：`$$...$$`。
 
-这是一个行内公式的样例：$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
+这是一个行内公式的样例：
 
+```tex
+    $latex \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
+```
+
+会显示为：$latex \sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
