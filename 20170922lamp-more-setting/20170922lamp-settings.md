@@ -5,16 +5,20 @@
 ## PHPMyAdmin目录重命名
 
 PHPMyAdmin是常用来管理MySQL数据库的默认登录入口，其默认路径位置是：
+
 ```
 域名或IP/phpmyadmin
 ```
+
 为了提高安全性，有必要将这个目录进行重命名，其默认路径为：
+
 ```
 /home/wwwroot/default/phpmyadmin/
 ```
 
 我们使用Xshell连接到VPS，使用下面的命令打开上层default目录，然后将phpmyadmin重命名新目录newcontent（newcontent可以是你想要改成的任何新目录名字）
-```
+
+```sh
     # cd /home/wwwroot/default/
     # mv phpmyadmin newcontent
 ```
@@ -22,7 +26,8 @@ PHPMyAdmin是常用来管理MySQL数据库的默认登录入口，其默认路�
 ## 修改SSH登陆VPS的端口
 
 通常使用SSH方式登陆VPS的默认端口为22，我可以将这个端口号改为另外一个端口，比如：666，在CentOS中的修改端口的命令为：
-```
+
+```sh
     # sed -i 's/#Port 22/Port 666/g' /etc/ssh/sshd_config
 ```
 
@@ -33,36 +38,49 @@ fail2ban是Linux上著名的入侵保护的开源框架，可以检测可疑的�
 在安装fail2ban之前需要安装EPEL源，过程如下:
 
 1. 确定系统的版本。
-```
+
+```sh
     # cat /etc/redhat-release
     CentOS release 6.9 (Final)
 ```
+
 2. 根据系统版本安装相应的EPEL软件源。
-```
+
+```sh
     # wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
     # rpm -ivh epel-release-6-8.noarch.rpm
 ```
+
 3. 安装完成后，测试EPEL是否添加到源列表中，成功安装后epel会出现在repo id中：
-```
+
+```sh
     # yum repolist
 ```
 
 下面进行安装fail2ban：
-```
+
+```sh
     # yum install fail2ban
 ```
+
 成功安装后，输入命令：
-```
+
+```sh
     # fail2ban-client ping
 ```
+
 会返回消息：
-```
+
+```sh
     # Server replied: pong
 ```
+
 将其设置为开机自启动：
-```
+
+```sh
     # chkconfig fail2ban on
 ```
+
 到此，fail2ban就完成安装过程。
 
 ## 禁用Linux多余端口
@@ -71,43 +89,66 @@ fail2ban是Linux上著名的入侵保护的开源框架，可以检测可疑的�
 ***iptables的配置很复杂，请谨慎操作，不要出现错误***
 
 1. 清空默认规则：
-```
+
+```sh
     # iptables -F
 ```
+
 2. 允许默认的SSH端口22：
-```
+
+```sh
     # iptables -A INPUT -p tcp --dport 22 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 ```
+
 3. 允许本机访问本机：
-```
+
+```sh
     # iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT
     # iptables -A OUTPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT
 ```
+
 4. 允许自定义的SSH端口666：
-```
+
+```sh
     # iptables -A INPUT -p tcp -s 0/0 --dport 666 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 666 -m state --state ESTABLISHED -j ACCEPT
 ```
+
 5. 允许http、https端口80，443：
-```
+
+```sh
     # iptables -A INPUT -p tcp -s 0/0 --dport 80 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
     # iptables -A INPUT -p tcp -s 0/0 --dport 443 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT
 ```
+
 6. 允许SSR端口，以444 555为例，有几个添加几个：
-```
+
+```sh
     # iptables -A INPUT -p tcp -s 0/0 --dport 444 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 444 -m state --state ESTABLISHED -j ACCEPT
     # iptables -A INPUT -p tcp -s 0/0 --dport 555 -j ACCEPT
     # iptables -A OUTPUT -p tcp --sport 555 -m state --state ESTABLISHED -j ACCEPT
 ```
+
 7. 保存iptables配置:
-```
+
+```sh
     # iptables-save > /etc/sysconfig/iptables
+    # 在CentOS中使用
+    # service iptables save 
 ```
-8. 重载iptables:
-```
+
+8. 显示iptables:
+
+```sh
     # iptables -L
+```
+
+9. 设置iptables开机启动
+
+```sh
+    # chkconfig iptables on
 ```
