@@ -212,3 +212,14 @@ remote的其它命令：
 # git mv sourcefile destinationfile
 ```
 
+## 参考链接
+
+[git-简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
+
+[Git reference](https://git-scm.com/docs)
+
+[Pro Git](https://git-scm.com/book/en/v2)
+
+[gitignore templates](https://github.com/github/gitignore)
+
+[Git教程](http://www.runoob.com/git/git-tutorial.html)
