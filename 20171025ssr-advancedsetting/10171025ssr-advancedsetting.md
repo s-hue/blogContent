@@ -31,28 +31,28 @@ SSR服务端配置文件（位于`/etc/shadowsocks.json`）大体上为如下内
 
 1. protocol可以选择的协议有：
 
-+ “origin” ： 原版协议
-+ “verify_simple”	： 带校验的协议
-+ “verify_deflate”	： 带压缩的协议
-+ “verify_sha1″	： 带验证抗CCA攻击的协议，可兼容libev的OTA
-+ “auth_simple”	： 抗重放攻击的协议
-+ “auth_sha1″ ： 带验证抗CCA攻击且抗重放攻击的协议
-+ “auth_sha1_v2″ ： 类似”auth_sha1″，提供更好的长度混淆特性
++ "origin" ： 原版协议
++ "verify_simple"	： 带校验的协议
++ "verify_deflate"	： 带压缩的协议
++ "verify_sha1"	： 带验证抗CCA攻击的协议，可兼容libev的OTA
++ "auth_simple"	： 抗重放攻击的协议
++ "auth_sha1" ： 带验证抗CCA攻击且抗重放攻击的协议
++ "auth_sha1_v2" ： 类似"auth_sha1"，提供更好的长度混淆特性
 
 2. obfs可以选择的混淆插件有：
 
-+ “plain” ： 不混淆
-+ “http_simple” ： 伪装为http协议
-+ “tls_simple” ： 伪装为tls协议（不建议使用）
-+ “random_head”	： 发送一个随机包再通讯的协议
-+ “tls1.2_ticket_auth” ： 伪装为tls ticket握手协议（强烈推荐），同时能抗重放攻击
++ "plain" ： 不混淆
++ "http_simple" ： 伪装为http协议
++ "tls_simple" ： 伪装为tls协议（不建议使用）
++ "random_head"	： 发送一个随机包再通讯的协议
++ "tls1.2_ticket_auth" ： 伪装为tls ticket握手协议（强烈推荐），同时能抗重放攻击
 
 （**注：客户端的protocol和obfs配置必须与服务端的一致。**）
 
 3. redirect参数的值为空字符串或一个列表，在连接方的数据不正确的时候，把数据重定向到列表中的其中一个地址和端口（不写端口则视为80），以伪装为目标服务器。如：
 
 ```json
-“redirect”:[“bing.com”, “facebook.com:443″],
+"redirect":["bing.com", "facebook.com:443"],
 ```
 
 4. dns_ipv6参数为true则指定服务器优先使用IPv6地址。仅当服务器能访问IPv6地址时可以用，否则会导致有IPv6地址的网站无法打开。
@@ -86,7 +86,7 @@ SSR服务端配置文件（位于`/etc/shadowsocks.json`）大体上为如下内
 }
 ```
 
-如果要为每个端口使用特殊的配置，则可以在`“port_password`中进行设置，没有详细设置的端口会使用后面的默认设置项。如：
+如果要为每个端口使用特殊的配置，则可以在`"port_password"`中进行设置，没有详细设置的端口会使用后面的默认设置项。如：
 
 ```json
 {
