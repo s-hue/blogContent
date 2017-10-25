@@ -13,7 +13,7 @@ SSR服务端配置文件（位于`/etc/shadowsocks.json`）大体上为如下内
 "local_port": 1080,                     // 本地监听端口，不用修改
 "password": "1234567890",               // ** 密码
 "timeout": 120,                         // 超时时间
-"method": "aes-256-cfb",                // ** 加密方式
+"method": "aes-256-cfb",                // ** 加密方式，一般使用rc4-md5, salsa20, chacha20
 "protocol": "auth_sha1_compatible",     // ** 协议插件
 "protocol_param": "",                   // 协议插件的参数
 "obfs": "http_simple_compatible",       // ** 混淆插件
