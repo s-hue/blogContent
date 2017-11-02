@@ -212,6 +212,37 @@ remote的其它命令：
 # git mv sourcefile destinationfile
 ```
 
+### 在U盘或网络硬盘上自建Git仓库
+
+1. 查看U盘或网络硬盘的挂载路径（以`//MYSHAREDISK`为例），再定位到仓库的存放的文件夹（以`//MYSHAREDISK/CodeGit/`为例）；
+
+2. 新建仓库文件夹（以`firstGit.git`为例，记住文件夹的名称就是`firstGit.git`，有后缀），打开这个文件夹后，在该文件夹下使用命令来创建新的空仓库：
+
+```sh
+# git init --bare
+```
+
+3. 打开本地电脑上想要同步的项目（如果没有就创建一个新的文件夹），创建`.gitignore`文件来标明需要忽略的文件，再使用命令`git init`来初始化本地Git库；
+
+4. 进行首次提交到本地仓库：
+
+```sh
+# git add .
+# git commit -m "initialized"
+```
+
+5. 为U盘或网络硬盘上的自建Git仓库命名为`myusbgit`：
+
+```sh
+# git remote add myusbgit //MYSHAREDISK/CodeGit/firstGit.git
+```
+
+6. 将本地仓库push到`myusbgit`上：
+
+```sh
+# git push myusbgit master
+```
+
 ## 参考链接
 
 [git-简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
