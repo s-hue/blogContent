@@ -154,8 +154,25 @@ RewriteRule ^/?(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
 
 经过上述过程后，网站的HTTPS升级工作就完成了。
 
+## 证书到期了咋办
+
+证书不小心到期了，可以使用下面的方法强制更新：
+
+```sh
+    # /path/to/certbot-auto renew --force-renew
+    # /etc/init.d/httpd restart
+```
+
+发现crontab没有自动更新证书，所以按网上的建议，重新设置了更新命令，效果待测试。
+
+```sh
+    # 13 5,14 * */2 * /path/to/certbot-auto renew --quiet; /etc/init.d/httpd graceful
+```
+
 ## 参考链接
 
 [Certbot](https://certbot.eff.org/)
 
 [免费SSL安全证书Let's Encrypt安装使用教程(附Nginx/Apache配置)](https://www.vpser.net/build/letsencrypt-free-ssl.html)
+
+[月与灯依旧](https://www.zhukun.net/archives/8104)
